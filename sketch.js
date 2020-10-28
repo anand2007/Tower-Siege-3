@@ -34,7 +34,7 @@ var monster;
 function preload() 
   {
     polygonImg = loadImage("hexagon.png");
-    getBg();
+    backgroundImg = loadImage("star.jpg");
 
   }
 
@@ -99,9 +99,8 @@ function setup() {
 }
 
 function draw() {
-  if(backgroundImg){
-    background(backgroundImg);
-}
+ 
+  background(backgroundImg);
   Engine.update(engine);
   noStroke();
   fill("red");
@@ -181,21 +180,3 @@ function keyPressed(){
 }
 
 
-async function getBg()
-{
-    var response = await fetch ("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
-    var responseJSON = await response.json();
-    var dt = responseJSON.datetime;
-    var hour = dt.slice(11,13);
-
-    if(hour >= 06 && hour <=19)
-    {
-      bg="day.jpg" ; 
-    }
-    else
-    {
-        bg = "star.jpg";
-    }
-    backgroundImg = loadImage(bg);
-    console.log(backgroundImg)
-}
